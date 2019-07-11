@@ -1,0 +1,23 @@
+/*Arquivo responsável por fazer o transpile do TypeScript para o JavaScript */
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "outDir": "dist",
+        "typeRoots": [
+            "../node_modules/@types"
+        ],
+        "types": [
+            "node"
+        ]
+    },
+    "include": [        
+        "**/*.ts",
+        "*.ts",
+    ],
+    "exclude": [
+        "node_modules"
+    ],
+    "buildOnSave": true,
+    "compileOnSave": true
+}
