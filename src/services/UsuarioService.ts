@@ -1,13 +1,22 @@
 import { Connection } from './../conn/connection';
 
 class UsuarioService{
+
+    conn: Connection;
+    
+    constructor() {
+        this.conn = new Connection();
+    }
     
     all(){
 
         return new Promise((resolve, rejects)=>{
 
-            let conn  = new Connection();
-            conn.connection.query('SELECT * FROM usuario', (error, results) =>{
+            this.conn.dbacesso.connect( (err) => {
+                if(err){ return console.log(err); }
+            } );
+
+            this.conn.dbacesso.query('SELECT * FROM usuario', (error, results) =>{
 
                 if(error){
                     rejects({
@@ -29,9 +38,7 @@ class UsuarioService{
 
         return new Promise( (resolve, rejects) => {
 
-            let conn = new Connection();
-
-            conn.connection.query(`SELECT * FROM usuario WHERE usua_id = ${_id}`, (error, results) => {
+            this.conn.dbacesso.query(`SELECT * FROM usuario WHERE usua_id = ?`, [_id],  (error, results) => {
 
                 if(error){
                     rejects({
